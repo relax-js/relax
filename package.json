@@ -1,0 +1,31 @@
+{
+    "name": "@relax-js/relax",
+    "version": "0.0.1",
+    "description": "Extremely Simple and Flexible JavaScript State Management Library",
+    "main": "dist/bundle.min.js",
+    "scripts": {
+        "dev": "webpack --watch --mode=development",
+        "build": "export NODE_ENV=production; webpack --progress --optimize-minimize --mode=production",
+        "prepublishOnly": "rm -rf ./dist && yarn build",
+        "test": "jest --watch --config=jest.config.json"
+    },
+    "author": "Jason McNeal",
+    "license": "MIT",
+    "devDependencies": {
+        "@babel/core": "^7.0.1",
+        "@babel/plugin-proposal-class-properties": "^7.0.0",
+        "@babel/preset-env": "^7.0.0",
+        "babel-core": "^7.0.0-bridge.0",
+        "babel-eslint": "^9.0.0",
+        "babel-jest": "^23.6.0",
+        "babel-loader": "^8.0.0",
+        "eslint": "^5.5.0",
+        "eslint-config-airbnb-base": "^13.1.0",
+        "eslint-loader": "^2.1.0",
+        "eslint-plugin-babel": "^5.2.0",
+        "eslint-plugin-import": "^2.14.0",
+        "jest": "^23.6.0",
+        "webpack": "^4.18.1",
+        "webpack-cli": "^3.1.0"
+    }
+}

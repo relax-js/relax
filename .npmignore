@@ -1,0 +1,19 @@
+# Publish dist to npm but not to repo
+!dist/
+
+# Ignore List
+_config.yml
+.babelrc
+.cache/
+.eslintrc
+.gitignore
+.nvmrc
+.vscode/
+*.tgz
+app/
+CHANGELOG.md
+scripts/
+src/
+webpack.config.js
+yarn.lock
+yarn*.log
