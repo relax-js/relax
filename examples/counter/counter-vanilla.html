@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Relax basic example</title>
+    <script src="../../dist/relax.min.js"></script>
+</head>
+<body>
+    <div>
+        <p>
+            Relax
+            Clicked: <span id="value">0</span> times
+            <button id="increment">+</button>
+            <button id="decrement">-</button>
+            <button id="incrementIfOdd">Increment if odd</button>
+            <button id="incrementAsync">Increment async</button>
+        </p>
+    </div>
+    <script>
+        // actions
+        var increment = function increment() {
+            return ({ state, dispatch }) => {
+                console.log('increment');
+                return {
+                    count: state.count + 1
+                };
+            }
+        };
+
+        var decrement = function decrement() {
+            return ({ state }) => {
+                console.log('decrement');
+                return {
+                    count: state.count - 1
+                }
+            }
+        };
+
+        var fetchLocation = async () => {
+            console.log('fetch location');
+            const response = await fetch('https://ipinfo.io/json');
+            const location = await response.json();
+            console.log(location);
+
+            return {
+                location
+            };
+        }
+
+        // create store
+        var initialState = {
+            count: 0
+        };
+        var store = Relax.createStore({ initialState })
+
+        var valueEl = document.getElementById('value')
+        function render(params) {
+            valueEl.innerHTML = store.getState().count.toString()
+        }
+
+        render()
+        store.subscribe(render)
+
+        document.getElementById('increment')
+            .addEventListener('click', async function () {
+                await store.dispatch(decrement())
+                await store.dispatch(increment())
+                // await store.dispatch(fetchLocation());
+            })
+
+        document.getElementById('decrement')
+            .addEventListener('click', function () {
+                store.dispatch(decrement())
+            })
+
+        document.getElementById('incrementIfOdd')
+            .addEventListener('click', function () {
+                if (store.getState().count % 2 !== 0) {
+                    store.dispatch(increment())
+                }
+            })
+
+        document.getElementById('incrementAsync')
+            .addEventListener('click', function () {
+                setTimeout(function () {
+                    store.dispatch(increment())
+                }, 1000)
+            })
+    </script>
+</body>
+</html>

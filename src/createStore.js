@@ -1,4 +1,5 @@
 import devTools from './devTools';
+import { composeAction } from './composeAction';
 
 const createStore = (options) => {
     let state = options.initialState || {};
@@ -8,25 +9,23 @@ const createStore = (options) => {
         callSubscribers: function callSubscribers(params) {
             Promise.all(this.subscribers.map((fn, i) => Promise.resolve(fn({
                 ...params,
-                state: this.getState(),
+                dispatch: this.dispatch,
+                getState: this.getState,
                 unsubscribe: () => this.unsubscribe(i),
             }))));
         },
-        dispatch: function dispatch(params) {
-            return Promise.resolve(params.response).then((response) => {
+        dispatch: function dispatch(action) {
+            return Promise.resolve(composeAction(this, action)).then((response) => {
                 // Get action and delete from response
-                const { _action } = response;
-                delete response._action;
+                const { _action, ...changed } = response;
 
                 // Set new state
-                this.setState(response);
+                this.setState(changed);
 
-                // Return params
-                return {
-                    _action,
-                    ...params,
-                    response,
-                };
+                // Send response to all subscribers
+                store.callSubscribers(response);
+
+                return response;
             });
         },
         getState: function getState() {

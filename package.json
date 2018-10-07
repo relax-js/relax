@@ -2,7 +2,7 @@
     "name": "@relax-js/relax",
     "version": "0.0.1",
     "description": "Extremely Simple and Flexible JavaScript State Management Library",
-    "main": "dist/bundle.min.js",
+    "main": "dist/relax.min.js",
     "scripts": {
         "dev": "webpack --watch --mode=development",
         "build": "export NODE_ENV=production; webpack --progress --optimize-minimize --mode=production",

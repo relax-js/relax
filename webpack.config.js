@@ -8,7 +8,7 @@ const webpack = {
         path: path.resolve('dist'),
         filename: path.basename(app.main),
         libraryTarget: 'umd',
-        umdNamedDefine: true,
+        library: 'Relax',
     },
     module: {
         rules: [

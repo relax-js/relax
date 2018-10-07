@@ -1,5 +1,5 @@
 import createStore from './createStore';
 
-export default {
-    createStore,
+export {
+    createStore, // eslint-disable-line
 };
