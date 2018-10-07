@@ -15,6 +15,8 @@ const createStore = (options) => {
             }))));
         },
         dispatch: async function dispatch(action) {
+            if (!action) return undefined;
+
             let response = composeAction(this, action);
 
             // Check if promise

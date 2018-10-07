@@ -53,7 +53,6 @@
 
         var valueEl = document.getElementById('value')
         function render(params) {
-            console.log(params);
             valueEl.innerHTML = store.getState().count.toString()
         }
 
@@ -69,7 +68,9 @@
 
         document.getElementById('decrement')
             .addEventListener('click', function () {
-                store.dispatch(decrement())
+                store.dispatch(decrement()).then(params => {
+                    console.log({ params });
+                })
             })
 
         document.getElementById('incrementIfOdd')
