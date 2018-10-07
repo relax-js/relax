@@ -14,19 +14,22 @@ const createStore = (options) => {
                 unsubscribe: () => this.unsubscribe(i),
             }))));
         },
-        dispatch: function dispatch(action) {
-            return Promise.resolve(composeAction(this, action)).then((response) => {
-                // Get action and delete from response
-                const { _action, ...changed } = response;
+        dispatch: async function dispatch(action) {
+            let response = composeAction(this, action);
 
-                // Set new state
-                this.setState(changed);
+            // Check if promise
+            if ('then' in response) response = await response;
 
-                // Send response to all subscribers
-                store.callSubscribers(response);
+            // Exclude _action from response
+            const { _action, ...changed } = response;
 
-                return response;
-            });
+            // Set new state
+            this.setState(changed);
+
+            // Send response to all subscribers
+            store.callSubscribers(response);
+
+            return response;
         },
         getState: function getState() {
             return state;

@@ -35,15 +35,14 @@
             }
         };
 
-        var fetchLocation = async () => {
+        var fetchLocation = () => {
             console.log('fetch location');
-            const response = await fetch('https://ipinfo.io/json');
-            const location = await response.json();
-            console.log(location);
-
-            return {
-                location
-            };
+            return fetch('https://ipinfo.io/json')
+                .then(data => data.json())
+                .then(location => ({
+                    _action: 'fetchLocation',
+                    location
+                }));
         }
 
         // create store
@@ -54,6 +53,7 @@
 
         var valueEl = document.getElementById('value')
         function render(params) {
+            console.log(params);
             valueEl.innerHTML = store.getState().count.toString()
         }
 
@@ -61,10 +61,10 @@
         store.subscribe(render)
 
         document.getElementById('increment')
-            .addEventListener('click', async function () {
-                await store.dispatch(decrement())
-                await store.dispatch(increment())
-                // await store.dispatch(fetchLocation());
+            .addEventListener('click', function () {
+                store.dispatch(fetchLocation());
+                store.dispatch(decrement())
+                store.dispatch(increment())
             })
 
         document.getElementById('decrement')
