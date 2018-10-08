@@ -1,34 +1,38 @@
 import devTools from './devTools';
-import { composeAction } from './composeAction';
+import { actionParams, composeAction } from './composeAction';
 
 const createStore = (options) => {
     let state = options.initialState || {};
 
     const store = {
         subscribers: [],
-        callSubscribers: function callSubscribers(params) {
+        callSubscribers: function callSubscribers(response) {
             Promise.all(this.subscribers.map((fn, i) => Promise.resolve(fn({
-                ...params,
-                dispatch: this.dispatch,
-                getState: this.getState,
+                ...response,
                 unsubscribe: () => this.unsubscribe(i),
             }))));
         },
         dispatch: async function dispatch(action) {
             if (!action) return undefined;
 
-            let response = composeAction(this, action);
+            let result = composeAction(this, action);
 
             // Check if promise
-            if ('then' in response) response = await response;
+            if ('then' in result) result = await result;
 
-            // Exclude _action from response
-            const { _action, ...changed } = response;
+            // Exclude _action from result
+            const { _action, ...changed } = result;
 
             // Set new state
             this.setState(changed);
 
-            // Send response to all subscribers
+            // Send result to all subscribers
+            const response = {
+                ...actionParams(this),
+                result,
+            };
+
+            // Send result to all subscribers
             store.callSubscribers(response);
 
             return response;

@@ -61,8 +61,8 @@
 
         document.getElementById('increment')
             .addEventListener('click', function () {
-                store.dispatch(fetchLocation());
                 store.dispatch(decrement())
+                // store.dispatch(fetchLocation());
                 store.dispatch(increment())
             })
 
