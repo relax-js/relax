@@ -11,6 +11,18 @@
     },
     "author": "Jason McNeal",
     "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/relax-js/relax"
+    },
+    "keywords": [
+        "redux",
+        "relax",
+        "state",
+        "management",
+        "promise",
+        "async"
+    ],
     "devDependencies": {
         "@babel/core": "^7.0.1",
         "@babel/plugin-proposal-class-properties": "^7.0.0",

@@ -10,9 +10,8 @@ _config.yml
 .nvmrc
 .vscode/
 *.tgz
-app/
+examples/
 CHANGELOG.md
-scripts/
 src/
 webpack.config.js
 yarn.lock
