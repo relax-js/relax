@@ -1,7 +1,7 @@
 import devTools from './devTools';
 import { actionParams, composeAction } from './composeAction';
 
-const createStore = (options) => {
+const createStore = (options = {}) => {
     let state = options.initialState || {};
 
     const store = {
