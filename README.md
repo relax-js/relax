@@ -1,12 +1,12 @@
 ### Relax - A Promise Based State Management Library
 The redux you know and love - evolved. Rewritten from scratch to simplify how you manage state. No more action types, switch statements, middleware, and especially no reducers!
 
-[Example Code](https://github.com/relax-js/relax/tree/master/examples)
-[Setup](#create-store)
-[Managing Branches of State](https://github.com/relax-js/relax/tree/master/examples/branches)
-[Asyncronous Actions](#asyncronous-actions)
-[Return Values](#dispatch-response)
-[Debugging](#debugging)
+- [Example Code](https://github.com/relax-js/relax/tree/master/examples)
+- [Setup](#create-store)
+- [Managing Branches of State](https://github.com/relax-js/relax/tree/master/examples/branches)
+- [Asyncronous Actions](#asyncronous-actions)
+- [Return Values](#dispatch-response)
+- [Debugging](#debugging)
 
 ---
 #### Create Store
