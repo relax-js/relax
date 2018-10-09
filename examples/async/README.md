@@ -33,12 +33,15 @@ store.dispatch(fetchData('/someApi')).then(({ state }) => {
 });
 ```
 
-#### Making Your Asynchronous Actions Synchronous
-Naturally you could nest `.then` to accomplish this but `async/await` will keep your code much cleaner.
+#### Waiting On Your Actions
 ```js
-const runSequence = async () => {
-    await store.dispatch(fetchData('/someApi'))
-    await store.dispatch(anotherAsyncAction())
-    await store.dispatch(anotherAsyncAction())
+const runSequence = () => {
+    Promise.all([
+        store.dispatch(fetchData('/someApi')),
+        store.dispatch(anotherAsyncAction()),
+        store.dispatch(anotherAsyncAction()),
+    ]).then(() => {
+        // all 3 are done
+    })
 }
 ```

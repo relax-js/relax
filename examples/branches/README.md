@@ -1,5 +1,5 @@
 ### Branches of State
-It's practical to need various branches of state and while Relax doesn't do anything special to handle that, it does provide enough data to solve this problem.
+It's practical to need various branches of state and while Relax doesn't do anything special to handle that, it is flexible and easy enough to solve this problem.
 
 Let's say our state looks like this:
 ```js

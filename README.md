@@ -10,7 +10,7 @@ The redux you know and love - evolved. Rewritten from scratch to simplify how yo
 
 ---
 #### Create Store
-This should look familiar, but notice I'm not passing any parameters. It does take paramets, but this is the most basic setup.
+This is the most basic setup of creating a store. To read about the parameters it accepts, such as setting an initial state, see [here](https://github.com/relax-js/relax/tree/master/examples/createStore)
 ```js
 const store = createStore();
 ```
@@ -73,7 +73,7 @@ store.dispatch(updateValue(100)).then(() => {
 });
 ```
 
-But wait, there's more to `.then`. It provides an object of parameters!
+But wait, there's more to `dispatch` and `.then`. It provides an object of parameters!
 ```js
 store.dispatch(...).then(({ result, state, dispatch }) => {})
 ```
@@ -92,9 +92,9 @@ Property | Description
 unsubscribe | function to unsubscribe: `unsubscribe()`
 
 #### Debugging
-Currently Relax hooks up to Redux Dev Tools out of the box, but still needs some work.
+Currently Relax hooks up to Redux Dev Tools out of the box. (still a work in progress)
 
-Typically with action reactors in redux you'd create a `type` which would also display in the dev tools.
+Typically with action creators in redux you'd create a `type` which would also display in the dev tools.
 
 This is how you pass a *type* with Relax. Take the action `updateValue` for example:
 ```js
@@ -103,4 +103,4 @@ const updateValue = (newValue) => ({
     value: newValue
 });
 ```
-`_action` is a string and only serves to help with debugging in dev tools.
+`_action` is a string and is helpful with debugging in dev tools. You could subscribe and watch for an `_action` if you really wanted to.
