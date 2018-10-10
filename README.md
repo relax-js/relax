@@ -1,5 +1,5 @@
 ### Relax - A Promise Based State Management Library
-The redux you know and love - evolved. Rewritten from scratch to simplify how you manage state. No more action types, switch statements, middleware, and especially no reducers! Plus it's tiny: `1.69 kB` gzipped
+The redux you know and love - evolved. Rewritten from scratch to simplify how you manage state. No more action types, switch statements, middleware, and especially no reducers! Plus it's tiny: `1.73 kB` gzipped
 
 - [Example Code](https://github.com/relax-js/relax/tree/master/examples)
 - [Setup](#create-store)
