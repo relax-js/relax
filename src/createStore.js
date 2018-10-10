@@ -1,7 +1,7 @@
+import dispatch from './dispatch';
 import devTools from './devTools';
-import { actionParams, composeAction } from './composeAction';
 
-const createStore = (options = {}) => {
+function createStore(options = {}) {
     let state = options.initialState || {};
 
     const store = {
@@ -11,31 +11,6 @@ const createStore = (options = {}) => {
                 ...response,
                 unsubscribe: () => this.unsubscribe(i),
             }))));
-        },
-        dispatch: async function dispatch(action) {
-            if (!action) return undefined;
-
-            let result = composeAction(this, action);
-
-            // Check if promise
-            if ('then' in result) result = await result;
-
-            // Exclude _action from result
-            const { _action, ...changed } = result;
-
-            // Set new state
-            this.setState(changed);
-
-            // Send result to all subscribers
-            const response = {
-                ...actionParams(this),
-                result,
-            };
-
-            // Send result to all subscribers
-            store.callSubscribers(response);
-
-            return response;
         },
         getState: function getState() {
             return state;
@@ -54,6 +29,8 @@ const createStore = (options = {}) => {
         },
     };
 
+    store.dispatch = (...args) => dispatch(store, ...args);
+
     /** Redux DevTool */
     devTools.connect(options.devTools, {
         state,
@@ -61,6 +38,6 @@ const createStore = (options = {}) => {
     });
 
     return store;
-};
+}
 
 export default createStore;
