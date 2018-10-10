@@ -29,7 +29,7 @@ function createStore(options = {}) {
         },
     };
 
-    store.dispatch = (...args) => dispatch(store, ...args);
+    store.dispatch = action => dispatch(store, action);
 
     /** Redux DevTool */
     devTools.connect(options.devTools, {
