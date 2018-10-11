@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Relax basic example</title>
-    <script src="../../dist/relax.min.js"></script>
+    <script src="https://unpkg.com/@relax-js/relax@0.0.6/dist/relax.min.js"></script>
 </head>
 <body>
     <div>
@@ -21,6 +21,7 @@
             return ({ state, dispatch }) => {
                 console.log('increment');
                 return {
+                    _action: 'increment',
                     count: state.count + 1
                 };
             }
@@ -30,6 +31,7 @@
             return ({ state }) => {
                 console.log('decrement');
                 return {
+                    _action: 'decrement',
                     count: state.count - 1
                 }
             }
@@ -61,8 +63,6 @@
 
         document.getElementById('increment')
             .addEventListener('click', function () {
-                store.dispatch(decrement())
-                // store.dispatch(fetchLocation());
                 store.dispatch(increment())
             })
 
