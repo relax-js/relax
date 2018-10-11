@@ -15,8 +15,8 @@ const devTools = {
         this.extension.init({ state });
         subscribe(this.subscribe.bind(this));
     },
-    subscribe: function subscribe({ _action, state }) {
-        this.extension.send(_action || 'state changed', state, this.options);
+    subscribe: function subscribe({ result, state }) {
+        this.extension.send(result._action || 'state changed', state, this.options);
     },
 };
 
