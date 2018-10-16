@@ -1,5 +1,5 @@
 ### Relax - A Promise Based State Management Library
-The redux you know and love - evolved. Rewritten from scratch to simplify how you manage state. No more action types, switch statements, middleware, and especially no reducers! Plus it's tiny: `1.31 kB` gzipped
+A spin-off of Redux. Rewritten from scratch to simplify how you manage state. No more action types, switch statements, middleware, and especially no reducers! Plus it's tiny: `1.31 kB` gzipped
 
 - [Example Code](https://github.com/relax-js/relax/tree/master/examples)
 - [Setup](#create-store)
@@ -7,6 +7,10 @@ The redux you know and love - evolved. Rewritten from scratch to simplify how yo
 - [Asyncronous Actions](#asyncronous-actions)
 - [Return Values](#dispatch-response)
 - [Debugging](#debugging)
+
+
+Complimentary Libraries
+- [React With Relax](https://github.com/relax-js/react-relax)
 
 ---
 #### Create Store
@@ -37,7 +41,7 @@ const updateValue = (newValue) => {
 store.dispatch(updateValue(47))
 console.log(store.getState()) // { value: 47 }
 ```
-That was a super basic example. If you're familiar with redux you may be wondering where the reducer is --- there are no reducers! What you return from your action is **merged** with the current state.
+That was a super basic example. If you're familiar with Redux you may be wondering where the reducer is --- there are no reducers! What you return from your action is **merged** with the current state.
 
 If you're thinking, "I can see this getting messy really fast" don't worry, managing different branches of state can be pretty simple! See [here](https://github.com/relax-js/relax/tree/master/examples/branches) to continue reading on that.
 
@@ -94,7 +98,7 @@ unsubscribe | function to unsubscribe: `unsubscribe()`
 #### Debugging
 Currently Relax hooks up to Redux Dev Tools out of the box. (still a work in progress)
 
-Typically with action creators in redux you'd create a `type` which would also display in the dev tools.
+Typically with action creators in Redux you'd create a `type` which would also display in the dev tools.
 
 This is how you pass a *type* with Relax. Take the action `updateValue` for example:
 ```js
