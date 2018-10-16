@@ -1,4 +1,7 @@
 ### Relax - A Promise Based State Management Library
+
+[![npm version](https://badge.fury.io/js/%40relax-js%2Frelax.svg)](https://badge.fury.io/js/%40relax-js%2Frelax)
+
 A spin-off of Redux. Rewritten from scratch to simplify how you manage state. No more action types, switch statements, middleware, and especially no reducers! Plus it's tiny: `1.31 kB` gzipped
 
 - [Example Code](https://github.com/relax-js/relax/tree/master/examples)
