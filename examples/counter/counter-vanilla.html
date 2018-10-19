@@ -19,7 +19,6 @@
         // actions
         var increment = function increment() {
             return ({ state, dispatch }) => {
-                console.log('increment');
                 return {
                     _action: 'increment',
                     count: state.count + 1
@@ -29,7 +28,6 @@
 
         var decrement = function decrement() {
             return ({ state }) => {
-                console.log('decrement');
                 return {
                     _action: 'decrement',
                     count: state.count - 1
@@ -38,7 +36,6 @@
         };
 
         var fetchLocation = () => {
-            console.log('fetch location');
             return fetch('https://ipinfo.io/json')
                 .then(data => data.json())
                 .then(location => ({
@@ -63,13 +60,18 @@
 
         document.getElementById('increment')
             .addEventListener('click', function () {
-                store.dispatch(increment())
+                // store.dispatch(fetchLocation()).then(params => {
+                //     console.log('fetch location');
+                // });
+                store.dispatch(increment()).then(params => {
+                    console.log('increment');
+                });
             })
 
         document.getElementById('decrement')
             .addEventListener('click', function () {
                 store.dispatch(decrement()).then(params => {
-                    console.log({ params });
+                    console.log('decrement');
                 })
             })
 
