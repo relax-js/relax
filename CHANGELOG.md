@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+### [0.0.9]
+• Removed spread operators getting bundle down to `775 B`!
+
 ### [0.0.8]
 • Replaced `async/await` for `Promise.resolve()` making bundle `1.06 kB` gzipped
 
