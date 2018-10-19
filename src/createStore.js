@@ -8,7 +8,7 @@ function createStore(options = {}) {
         subscribers: [],
         callSubscribers: function callSubscribers(response) {
             Promise.all(this.subscribers.map((fn, i) => Promise.resolve(fn(
-                Object.assign(response, {
+                Object.assign({}, response, {
                     unsubscribe: () => this.unsubscribe(i),
                 }),
             ))));
@@ -17,7 +17,7 @@ function createStore(options = {}) {
             return state;
         },
         setState: function setState(next) {
-            state = Object.assign(this.getState(), next);
+            state = Object.assign({}, this.getState(), next, { _action: undefined });
         },
         subscribe: function subscribe(fn) {
             this.subscribers.push(fn);

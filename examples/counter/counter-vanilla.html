@@ -56,7 +56,6 @@
             valueEl.innerHTML = store.getState().count.toString()
         }
 
-        render()
         store.subscribe(render)
 
         document.getElementById('increment')

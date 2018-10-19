@@ -13,8 +13,8 @@ const devTools = {
         this.ext.init({ state });
         subscribe(this.subscribe.bind(this));
     },
-    subscribe: function subscribe({ result, state }) {
-        this.ext.send(result._action || 'state changed', state, this.options);
+    subscribe: function subscribe({ res, state }) {
+        this.ext.send(res._action || 'state changed', state, this.options);
     },
 };
 
