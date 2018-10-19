@@ -7,19 +7,17 @@ function createStore(options = {}) {
     const store = {
         subscribers: [],
         callSubscribers: function callSubscribers(response) {
-            Promise.all(this.subscribers.map((fn, i) => Promise.resolve(fn({
-                ...response,
-                unsubscribe: () => this.unsubscribe(i),
-            }))));
+            Promise.all(this.subscribers.map((fn, i) => Promise.resolve(fn(
+                Object.assign(response, {
+                    unsubscribe: () => this.unsubscribe(i),
+                }),
+            ))));
         },
         getState: function getState() {
             return state;
         },
         setState: function setState(next) {
-            state = {
-                ...this.getState(),
-                ...next,
-            };
+            state = Object.assign(this.getState(), next);
         },
         subscribe: function subscribe(fn) {
             this.subscribers.push(fn);

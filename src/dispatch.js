@@ -9,16 +9,16 @@ export default function dispatch(store, action) {
     if ('then' in result) return Promise.resolve(action).then(a => dispatch(store, a));
 
     // Exclude _action from result
-    const { _action, ...changed } = result;
+    const { _action } = result;
+    delete result._action;
 
     // Set new state
-    store.setState(changed);
+    store.setState(result);
 
     // Send result to all subscribers
-    const response = {
-        ...actionParams(store),
-        result,
-    };
+    const response = Object.assign(actionParams(store), {
+        _action,
+    }, result);
 
     // Send result to all subscribers
     store.callSubscribers(response);

@@ -1,22 +1,20 @@
-const reduxDevTools = typeof window !== 'undefined' ? window.__REDUX_DEVTOOLS_EXTENSION__ : undefined;
+const lib = typeof window !== 'undefined' ? window.__REDUX_DEVTOOLS_EXTENSION__ : undefined;
 
 const devTools = {
-    extension: {},
-    setOptions: function setOptions(options = {}) {
+    ext: {},
+    connect: function connect(options = {}, { state, subscribe }) {
+        if (!lib) return;
+
         this.options = {
             name: options.name || document.title,
         };
-    },
-    connect: function connect(options, { state, subscribe }) {
-        if (!reduxDevTools) return;
 
-        this.setOptions(options);
-        this.extension = reduxDevTools.connect(this.options);
-        this.extension.init({ state });
+        this.ext = lib.connect(this.options);
+        this.ext.init({ state });
         subscribe(this.subscribe.bind(this));
     },
     subscribe: function subscribe({ result, state }) {
-        this.extension.send(result._action || 'state changed', state, this.options);
+        this.ext.send(result._action || 'state changed', state, this.options);
     },
 };
 
