@@ -1,17 +1,20 @@
 import { actionParams, composeAction } from './composeAction';
 
-function resolveAction(store, next) {
+function resolveAction(store, result) {
+    // For nested dispatch calls - only return result
+    if (result.dispatch) return result;
+
     // Set new state
-    store.setState(next);
+    store.setState(result);
 
     // Send result to all subscribers
-    const res = Object.assign({}, actionParams(store), next);
+    const response = Object.assign({}, actionParams(store), { result });
 
     // Send result to all subscribers
-    store.callSubscribers(res);
+    store.callSubscribers(response);
 
     // Ensure to return promise for sync actions
-    return Promise.resolve(res);
+    return response;
 }
 
 export default function dispatch(store, action) {
@@ -20,8 +23,8 @@ export default function dispatch(store, action) {
     if (!result) throw new Error('Received `undefined` from the dispatched action.');
 
     // Check if Promise - return async
-    if ('then' in result) return Promise.resolve(result).then(next => resolveAction(store, next));
+    if ('then' in result) return Promise.resolve(result).then(data => resolveAction(store, data));
 
     // Return sync
-    return resolveAction(store, result);
+    return Promise.resolve(resolveAction(store, result));
 }

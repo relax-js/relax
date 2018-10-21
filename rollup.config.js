@@ -18,7 +18,7 @@ export default {
         name: 'Relax',
     },
     plugins: [
-        eslint({
+        isProd && eslint({
             throwOnError: true,
             throwOnWarning: true,
         }),
