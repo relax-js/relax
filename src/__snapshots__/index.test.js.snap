@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Relax Dispatch Sync 1`] = `
+Object {
+  "user": Object {
+    "name": "Relax Is Awesome!",
+  },
+}
+`;
+
+exports[`Relax Nest Dispatch Async 1`] = `
+Object {
+  "user": Object {
+    "name": "Relax Is Amazing!",
+  },
+}
+`;
+
+exports[`Relax basic setup 1`] = `
+Object {
+  "callSubscribers": [Function],
+  "dispatch": [Function],
+  "getState": [Function],
+  "setState": [Function],
+  "subscribe": [Function],
+  "subscribers": Array [],
+  "unsubscribe": [Function],
+}
+`;
+
+exports[`Relax initial state 1`] = `
+Object {
+  "name": "Relax",
+}
+`;

@@ -17,7 +17,7 @@ function createStore(options = {}) {
             return state;
         },
         setState: function setState(next) {
-            state = Object.assign({}, this.getState(), next, { _action: undefined });
+            state = Object.assign({}, this.getState(), next);
         },
         subscribe: function subscribe(fn) {
             this.subscribers.push(fn);

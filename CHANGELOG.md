@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ### [0.0.10]
 • Bug fixes
+• Added some basic unit tests
 
 ### [0.0.9]
 • Removed spread operators getting bundle down to `775 B`!

@@ -4,7 +4,7 @@ import path from 'path';
 import babel from 'rollup-plugin-babel';
 import { eslint } from 'rollup-plugin-eslint';
 import { uglify } from 'rollup-plugin-uglify';
-// import filesize from 'rollup-plugin-filesize';
+import filesize from 'rollup-plugin-filesize';
 
 import app from './package.json';
 
@@ -26,6 +26,6 @@ export default {
             exclude: 'node_modules/**',
         }),
         isProd && uglify(),
-        // filesize(),
+        filesize(),
     ],
 };

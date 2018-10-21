@@ -4,8 +4,10 @@ function resolveAction(store, result) {
     // For nested dispatch calls - only return result
     if (result.dispatch) return result;
 
-    // Set new state
-    store.setState(result);
+    // Set new state - don't return _action
+    const next = Object.assign({}, result);
+    delete next._action;
+    store.setState(next);
 
     // Send result to all subscribers
     const response = Object.assign({}, actionParams(store), { result });
