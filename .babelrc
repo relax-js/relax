@@ -1,17 +1,5 @@
 {
     "presets": [
-        ["@babel/env", {
-            "targets": {
-                "browsers": "ie >= 11"
-            },
-            "modules": false
-        }]
-    ],
-    "env": {
-        "test": {
-            "presets":[
-              "@babel/env"
-            ]
-        }
-    }
+        "@babel/env"
+    ]
 }
