@@ -1,6 +1,6 @@
 {
     "name": "@relax-js/relax",
-    "version": "0.0.11",
+    "version": "0.0.12",
     "description": "Extremely Simple and Flexible JavaScript State Management Library",
     "main": "dist/relax.min.js",
     "scripts": {
