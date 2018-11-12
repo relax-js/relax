@@ -22,7 +22,7 @@ function resolveAction(store, result) {
 export default function dispatch(store, action) {
     const result = composeAction(store, action);
 
-    if (!result) throw new Error('Received `undefined` from the dispatched action.');
+    if (!result) return result;
 
     // Check if Promise - return async
     if ('then' in result) return Promise.resolve(result).then(data => resolveAction(store, data));
