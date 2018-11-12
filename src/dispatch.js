@@ -2,7 +2,7 @@ import { actionParams, composeAction } from './composeAction';
 
 function resolveAction(store, result) {
     // For nested dispatch calls - only return result
-    if (result.dispatch) return result;
+    if (!result || result.dispatch) return result;
 
     // Set new state - don't return _action
     const next = Object.assign({}, result);
