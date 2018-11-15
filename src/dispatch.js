@@ -1,5 +1,9 @@
 import { actionParams, composeAction } from './composeAction';
 
+function isObject(a) {
+    return (typeof a === 'object' && a !== null);
+}
+
 function buildResponse(store, result) {
     return Object.assign({}, actionParams(store), { result });
 }
@@ -10,7 +14,9 @@ function defaultResponse(store, result) {
 
 function resolveAction(store, result) {
     // For nested dispatch calls - only return result
-    if (!result || result.dispatch) return defaultResponse(store, result);
+    if (!result || (isObject(result) && result.dispatch)) {
+        return defaultResponse(store, result);
+    }
 
     // Set new state - don't return _action
     const next = Object.assign({}, result);
@@ -32,7 +38,9 @@ export default function dispatch(store, action) {
     if (!result) return defaultResponse(store, result);
 
     // Check if Promise - return async
-    if ('then' in result) return Promise.resolve(result).then(data => resolveAction(store, data));
+    if (isObject(result) && 'then' in result) {
+        return Promise.resolve(result).then(data => resolveAction(store, data));
+    }
 
     // Return sync
     return Promise.resolve(resolveAction(store, result));
