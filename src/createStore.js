@@ -1,5 +1,4 @@
 import dispatch from './dispatch';
-import devTools from './devTools';
 
 function createStore(options = {}) {
     let state = options.initialState || {};
@@ -28,14 +27,6 @@ function createStore(options = {}) {
     };
 
     store.dispatch = action => dispatch(store, action);
-
-    /** Redux DevTool */
-    if (process.env.NODE_ENV !== 'production') {
-        devTools.connect(options.devTools, {
-            state,
-            subscribe: store.subscribe.bind(store),
-        });
-    }
 
     return store;
 }
