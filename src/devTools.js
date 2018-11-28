@@ -13,7 +13,10 @@ const devTools = {
         this.ext.init({ state });
         subscribe(this.subscribe.bind(this));
     },
-    subscribe: function subscribe({ result, state }) {
+    subscribe: function subscribe(params) {
+        if (!params || !params.result || !params.result._action || !params.state) return;
+
+        const { result, state } = params;
         this.ext.send((result && result._action) || 'state changed', state, this.options);
     },
 };
