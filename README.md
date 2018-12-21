@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/%40relax-js%2Frelax.svg)](https://badge.fury.io/js/%40relax-js%2Frelax)
 
-A spin-off of Redux. Rewritten from scratch to simplify how you manage state. No more action types, switch statements, middleware, and especially no reducers! Plus it's tiny: `796 B` gzipped! That's ~60% smaller than Redux: `2.23kb` gzipped.
+A spin-off of Redux. Rewritten from scratch to simplify how you manage state. No more action types, switch statements, middleware, and especially no reducers! Plus it's tiny: `650 B` gzipped! That's ~70% smaller than Redux: `2.23kb` gzipped.
 
 - [Example Code](https://github.com/relax-js/relax/tree/master/examples)
 - [Setup](#create-store)
@@ -10,7 +10,6 @@ A spin-off of Redux. Rewritten from scratch to simplify how you manage state. No
 - [Asyncronous Actions](#asyncronous-actions)
 - [Return Values](#dispatch-response)
 - [Debugging](#debugging)
-
 
 Complimentary Libraries
 - [React With Relax](https://github.com/relax-js/react-relax)
@@ -99,7 +98,20 @@ Property | Description
 unsubscribe | function to unsubscribe: `unsubscribe()`
 
 #### Debugging
-Currently Relax hooks up to Redux Dev Tools out of the box. (still a work in progress)
+You can hook up to the Redux Dev Tools extension, if you have it installed, like this:
+```js
+const devTools = window.__REDUX_DEVTOOLS_EXTENSION__.connect({
+    name: `Instance Name`, // optional
+});
+devTools.init(store.getState());
+store.subscribe(({ result, state }) => {
+    const action = (result && result._action) || 'state changed';
+    devTools.send(action, state);
+});
+```
+**Warning**
+• I don't recommend using this in production so be sure to wrap it in `process.env.NODE_ENV !== 'production'` to avoid potential issues.
+• This is a basic example to show state diffs. Other dev tools features would require more logic.
 
 Typically with action creators in Redux you'd create a `type` which would also display in the dev tools.
 
