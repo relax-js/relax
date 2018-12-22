@@ -6,7 +6,7 @@ A spin-off of Redux. Rewritten from scratch to simplify how you manage state. No
 
 Basic Usage:
 
-[![Relax Tutorial](https://i.ibb.co/pjnfM3j/relax-play.png)](https://youtu.be/7y-uTU70NQw "Relax Counter Tutorial")
+[![Relax Tutorial](https://i.ibb.co/pjnfM3j/relax-play.png)](https://youtu.be/GLzRHx0DAX0 "Relax Counter Tutorial")
 
 - [Example Code](https://github.com/relax-js/relax/tree/master/examples)
 - [Setup](#create-store)
