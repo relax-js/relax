@@ -1,93 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Relax basic example</title>
+    <title>Relax Counter</title>
     <script src="https://unpkg.com/@relax-js/relax@latest/dist/relax.min.js"></script>
-    <!-- <script src="../../dist/relax.min.js"></script> -->
 </head>
 <body>
-    <div>
-        <p>
-            Relax
-            Clicked: <span id="value">0</span> times
-            <button id="increment">+</button>
-            <button id="decrement">-</button>
-            <button id="incrementIfOdd">Increment if odd</button>
-            <button id="incrementAsync">Increment async</button>
-        </p>
-    </div>
+    <p>
+        <h4>Relax Counter</h4>
+        Count: <span id="counter">0</span>
+        <button onclick="increment()">+</button>
+        <button onclick="decrement()">-</button>
+    </p>
     <script>
-        // actions
-        var increment = function increment() {
-            return ({ state, dispatch }) => {
-                return {
-                    _action: 'increment',
-                    count: state.count + 1
-                };
-            }
-        };
-
-        var decrement = function decrement() {
-            return ({ state }) => {
-                return {
-                    _action: 'decrement',
-                    count: state.count - 1
-                }
-            }
-        };
-
-        var fetchLocation = () => {
-            return fetch('https://ipinfo.io/json')
-                .then(data => data.json())
-                .then(location => ({
-                    _action: 'fetchLocation',
-                    location
-                }));
-        }
-
-        // create store
-        var initialState = {
+        const counter = document.getElementById('counter');
+        const initialState = {
             count: 0
         };
-        var store = Relax.createStore({ initialState })
+        const store = Relax.createStore({ initialState });
 
-        var valueEl = document.getElementById('value')
-        function render(params) {
-            valueEl.innerHTML = store.getState().count.toString()
-        }
+        const render = ({ state }) => {
+            counter.innerText = state.count;
+        };
 
-        store.subscribe(render)
+        store.subscribe(render);
 
-        document.getElementById('increment')
-            .addEventListener('click', function () {
-                // store.dispatch(fetchLocation()).then(params => {
-                //     console.log('fetch location');
-                // });
-                store.dispatch(increment()).then(params => {
-                    console.log('increment');
-                });
-            })
+        /** Actions */
+        const increment = () => {
+            store.dispatch(({ state }) => ({
+                count: state.count + 1
+            }))
+        };
 
-        document.getElementById('decrement')
-            .addEventListener('click', function () {
-                store.dispatch(decrement()).then(params => {
-                    console.log('decrement');
-                })
-            })
-
-        document.getElementById('incrementIfOdd')
-            .addEventListener('click', function () {
-                if (store.getState().count % 2 !== 0) {
-                    store.dispatch(increment())
-                }
-            })
-
-        document.getElementById('incrementAsync')
-            .addEventListener('click', function () {
-                setTimeout(function () {
-                    store.dispatch(increment())
-                }, 1000)
-            })
+        const decrement = () => {
+            store.dispatch(({ state }) => ({
+                count: state.count - 1
+            }))
+        };
     </script>
 </body>
 </html>
