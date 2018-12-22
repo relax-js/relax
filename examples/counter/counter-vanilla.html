@@ -14,8 +14,8 @@
     <script>
         const counter = document.getElementById('counter');
         const initialState = {
-            count: 0
-        };
+            count: 0,
+        }
         const store = Relax.createStore({ initialState });
 
         const render = ({ state }) => {
@@ -27,14 +27,14 @@
         /** Actions */
         const increment = () => {
             store.dispatch(({ state }) => ({
-                count: state.count + 1
-            }))
+                count: state.count + 1,
+            }));
         };
 
         const decrement = () => {
             store.dispatch(({ state }) => ({
-                count: state.count - 1
-            }))
+                count: state.count - 1,
+            }));
         };
     </script>
 </body>

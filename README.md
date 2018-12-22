@@ -4,6 +4,9 @@
 
 A spin-off of Redux. Rewritten from scratch to simplify how you manage state. No more action types, switch statements, middleware, and especially no reducers! Plus it's tiny: `650 B` gzipped! That's ~70% smaller than Redux: `2.23kb` gzipped.
 
+Basic Usage:
+[![Relax Tutorial](https://i.ibb.co/pjnfM3j/relax-play.png)](https://youtu.be/7y-uTU70NQw "Relax Counter Tutorial")
+
 - [Example Code](https://github.com/relax-js/relax/tree/master/examples)
 - [Setup](#create-store)
 - [Managing Branches of State](https://github.com/relax-js/relax/tree/master/examples/branches)

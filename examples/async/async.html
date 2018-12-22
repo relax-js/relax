@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Relax basic example</title>
+    <script src="https://unpkg.com/@relax-js/relax@latest/dist/relax.min.js"></script>
+    <!-- <script src="../../dist/relax.min.js"></script> -->
+</head>
+<body>
+<script>
+    /** actions */
+    var fetchLocation = () => {
+        return fetch('https://ipinfo.io/json')
+            .then(data => data.json())
+            .then(location => ({
+                _action: 'fetchLocation',
+                location
+            }));
+    }
+</script>
+</body>
+</html>
